@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Erfolgreich übermittelt</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            padding: 40px 50px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+        }
+
+        h1 {
+            color: #2f80ed;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .category-info {
+            background-color: #f0f8ff;
+            border: 2px solid #2f80ed;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .category-info.unassigned {
+            background-color: #fff5f5;
+            border-color: #ff6b6b;
+        }
+
+        .category-label {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .category-name {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2f80ed;
+            margin-bottom: 10px;
+        }
+
+        .category-name.unassigned {
+            color: #ff6b6b;
+        }
+
+        .confidence {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .confidence-bar {
+            width: 100%;
+            height: 20px;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .confidence-fill {
+            height: 100%;
+            background-color: #2f80ed;
+            transition: width 0.3s ease;
+        }
+
+        .confidence-fill.low {
+            background-color: #ff6b6b;
+        }
+
+        a.button {
+            text-decoration: none;
+            background-color: #2f80ed;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-size: 16px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        a.button:hover {
+            background-color: #1366d6;
+        }
+
+        .info-text {
+            font-size: 14px;
+            color: #666;
+            margin-top: 20px;
+            line-height: 1.6;
+        }
+
+        .unassigned-info {
+            background-color: #ffeaa7;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #856404;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Danke für Ihre Anfrage!</h1>
+        <p>Ihre Anfrage wurde erfolgreich übermittelt und automatisch klassifiziert.</p>
+        
+        <div class="category-info {% if kategorie == 'Nicht zuordbar' %}unassigned{% endif %}">
+            <div class="category-label">Zugeordnete Kategorie:</div>
+            <div class="category-name {% if kategorie == 'Nicht zuordbar' %}unassigned{% endif %}">{{ kategorie }}</div>
+            <div class="confidence">Konfidenz: {{ konfidenz }}%</div>
+            <div class="confidence-bar">
+                <div class="confidence-fill {% if konfidenz < 50 %}low{% endif %}" style="width: {{ konfidenz }}%"></div>
+            </div>
+        </div>
+        
+        {% if kategorie == 'Nicht zuordbar' %}
+        <div class="unassigned-info">
+            <strong>Hinweis:</strong> Ihre Anfrage konnte keiner spezifischen Kategorie zugeordnet werden. 
+            Sie wird von einem Mitarbeiter manuell geprüft und an die richtige Fachabteilung weitergeleitet.
+        </div>
+        {% else %}
+        <p class="info-text">
+            Ihre Anfrage wurde an die zuständige Fachabteilung weitergeleitet.<br>
+            Wir werden uns zeitnah mit Ihrem Anliegen befassen.
+        </p>
+        {% endif %}
+        
+        <a href="/" class="button">Zurück zur Startseite</a>
+    </div>
+</body>
+</html>

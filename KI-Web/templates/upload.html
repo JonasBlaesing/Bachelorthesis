@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Anfrage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        textarea,
+        input[type="file"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #2f80ed;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #1366d6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bürgeranliegen</h1>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+
+            <label>Vorname:</label>
+            <input type="text" name="first_name" required>
+
+            <label>Nachname:</label>
+            <input type="text" name="last_name" required>
+			
+			<label>E-Mail:</label>
+            <input type="text" name="e_mail" required>
+			
+			<label>Betreff:</label>
+            <input type="text" name="subject" required>
+
+            <label>Anliegen:</label>
+            <textarea name="message" rows="4"></textarea>
+
+            <button type="submit">Senden</button>
+        </form>
+    </div>
+</body>
+</html>
